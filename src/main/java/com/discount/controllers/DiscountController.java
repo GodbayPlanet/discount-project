@@ -10,12 +10,12 @@ import com.discount.domain.User;
 import com.discount.service.UserService;
 
 @RestController
-public class PupularPurchaseController {
+public class DiscountController {
 
 	private UserService userService;
 
 	@Autowired
-	public PupularPurchaseController(UserService userService) {
+	public DiscountController(UserService userService) {
 		this.userService = userService;
 	}
 
