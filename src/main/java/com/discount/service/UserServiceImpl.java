@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 	
 	private RestTemplate restTemplate;
 	
-	@Value("${discount.users}")
+	@Value("${discount.usersURL}")
 	private String usersURL;
 	
 	@Autowired
