@@ -9,16 +9,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.discount.domain.User;
+import com.discount.wrappers.UserByUserNameWrapper;
 import com.discount.wrappers.UserWrapper;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	private RestTemplate restTemplate;
-	
+
 	@Value("${discount.usersURL}")
 	private String usersURL;
-	
+
+	@Value("${discount.userByUserNameURL}")
+	private String userByUserNameURL;
+
 	@Autowired
 	public UserServiceImpl() {
 		this.restTemplate = restTemplate();
@@ -34,11 +38,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
+	 * Method returns User from server.
+	 */
+	@Override
+	public UserByUserNameWrapper getUserByName(String userName) {
+		 UserByUserNameWrapper user = restTemplate.getForObject(userByUserNameURL.replace("{userName}", userName), UserByUserNameWrapper.class);
+		 return user;
+	}
+
+	/**
 	 * Defining RestTemplate Bean.
+	 * 
 	 * @return
 	 */
 	@Bean
 	public RestTemplate restTemplate() {
-	    return new RestTemplate();
+		return new RestTemplate();
 	}
+
 }
