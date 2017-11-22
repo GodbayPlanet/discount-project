@@ -6,6 +6,15 @@ public class Product {
 	private String face;
 	private int price;
 	private int size;
+	
+	public Product() {}
+
+	public Product(int id, String face, int price, int size) {
+		this.id = id;
+		this.face = face;
+		this.price = price;
+		this.size = size;
+	}
 
 	public int getId() {
 		return id;
