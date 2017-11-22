@@ -78,8 +78,7 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testRestTemplate() {
-		UserServiceImpl userServiceImpl = new UserServiceImpl();
-		RestTemplate restTemplate = userServiceImpl.restTemplate();
+		RestTemplate restTemplate = RESTemplate.restTemplate();
 
 		assertNotNull(restTemplate);
 	}

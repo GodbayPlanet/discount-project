@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	public UserServiceImpl() {
-		this.restTemplate = restTemplate();
+		this.restTemplate = RESTemplate.restTemplate();
 	}
 
 	/**
@@ -46,14 +45,14 @@ public class UserServiceImpl implements UserService {
 		 return user;
 	}
 
-	/**
-	 * Defining RestTemplate Bean.
-	 * 
-	 * @return
-	 */
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+//	/**
+//	 * Defining RestTemplate Bean.
+//	 * 
+//	 * @return
+//	 */
+//	@Bean
+//	public RestTemplate restTemplate() {
+//		return new RestTemplate();
+//	}
 
 }
