@@ -45,14 +45,4 @@ public class UserServiceImpl implements UserService {
 		 return user;
 	}
 
-//	/**
-//	 * Defining RestTemplate Bean.
-//	 * 
-//	 * @return
-//	 */
-//	@Bean
-//	public RestTemplate restTemplate() {
-//		return new RestTemplate();
-//	}
-
 }
