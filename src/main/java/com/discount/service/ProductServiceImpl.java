@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.discount.domain.Product;
+import com.discount.wrappers.ProductByProductIdWrapper;
 import com.discount.wrappers.ProductWrapper;
 
 @Service
@@ -17,6 +18,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Value("${discount.productsURL}")
 	private String productsURL;
+	
+	@Value("${discount.productByProductIdURL}")
+	private String productByProductId;
 	
 	@Autowired
 	public ProductServiceImpl() {
@@ -33,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product getProductById(int id) {
-		return null;
+	public ProductByProductIdWrapper getProductById(int id) {
+		return restTemplate.getForObject(productByProductId.replace("{productId}", String.valueOf(id)), ProductByProductIdWrapper.class);
 	}
 
 }
