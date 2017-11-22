@@ -2,16 +2,16 @@ package com.discount.domain;
 
 public class Product {
 	
-	private Integer id;
+	private int id;
 	private String face;
-	private Integer price;
-	private Integer size;
+	private int price;
+	private int size;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -23,15 +23,15 @@ public class Product {
 		this.face = face;
 	}
 
-	public Integer getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
-	public Integer getSize() {
+	public int getSize() {
 		return size;
 	}
 
@@ -39,12 +39,4 @@ public class Product {
 		this.size = size;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [" + (id != null ? "id=" + id + ", " : "")
-				+ (face != null ? "face=" + face + ", " : "")
-				+ (price != null ? "price=" + price + ", " : "")
-				+ (size != null ? "size=" + size : "") + "]";
-	}
-	
 }
