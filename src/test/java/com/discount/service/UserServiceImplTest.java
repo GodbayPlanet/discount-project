@@ -36,6 +36,7 @@ public class UserServiceImplTest {
 	private static final String USER_PERO = "Pero";
 	private static final String USER_EMAIL_NENAD = "nenadovic@gmail.com";
 	private static final String USER_NENAD = "Nenad";
+	
 	@Mock
 	private UserService userService;
 

@@ -12,12 +12,12 @@ import com.discount.service.UserService;
 import com.discount.wrappers.UserByUserNameWrapper;
 
 @RestController
-public class DiscountController {
+public class UserController {
 
 	private UserService userService;
 
 	@Autowired
-	public DiscountController(UserService userService) {
+	public UserController(UserService userService) {
 		this.userService = userService;
 	}
 

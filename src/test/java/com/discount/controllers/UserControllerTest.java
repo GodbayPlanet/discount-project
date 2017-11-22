@@ -23,10 +23,10 @@ import com.discount.DiscountProjectApplication;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DiscountProjectApplication.class)
-public class DiscountControllerTest {
+public class UserControllerTest {
 
 	@InjectMocks
-	private DiscountController discountController;
+	private UserController userController;
 
 	@Autowired
 	private WebApplicationContext context;
@@ -49,6 +49,11 @@ public class DiscountControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$", hasSize(10)));
+		
+	}
+	
+	@Test
+	public void testGetUserByUserName() {
 		
 	}
 }
