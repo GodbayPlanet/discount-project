@@ -52,8 +52,4 @@ public class UserControllerTest {
 		
 	}
 	
-	@Test
-	public void testGetUserByUserName() {
-		
-	}
 }

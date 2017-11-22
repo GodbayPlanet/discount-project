@@ -12,19 +12,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+//import com.discount.config.Config;
 import com.discount.domain.User;
 import com.discount.wrappers.UserByUserNameWrapper;
 
 @RunWith(SpringRunner.class)
-//Need this for reading the values from test property file
-@TestPropertySource(locations = "classpath:application.properties")
 public class UserServiceImplTest {
 
 	private static final int EXPECTED_LIST_SIZE = 3;
@@ -39,7 +34,7 @@ public class UserServiceImplTest {
 	
 	@Mock
 	private UserService userService;
-
+	
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
@@ -83,16 +78,4 @@ public class UserServiceImplTest {
 		assertNotNull(restTemplate);
 	}
 
-	/**
-	 * This static class is added in order to populate fields with @Value annotation.
-	 * @author Nemanja Vasic
-	 *
-	 */
-	@Configuration
-	public static class Config {
-		@Bean
-		public static PropertySourcesPlaceholderConfigurer propertyConfigurer() {
-			return new PropertySourcesPlaceholderConfigurer();
-		}
-	}
 }
