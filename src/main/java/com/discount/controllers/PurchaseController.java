@@ -39,8 +39,7 @@ public class PurchaseController {
 		if (limit == null) {
 			return listOfPurchasesByUser;
 		} else {
-			List<Purchase> newList = listOfPurchasesByUser.stream().collect(Collectors.toList()).subList(FROM_INDEX, limit);
-			return newList;
+			return listOfPurchasesByUser.stream().collect(Collectors.toList()).subList(FROM_INDEX, limit);
 		}
 	}
 	
