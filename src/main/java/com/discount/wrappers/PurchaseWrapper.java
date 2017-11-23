@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.discount.domain.Purchase;
 
-public class PurchaseByUserWrapper {
+public class PurchaseWrapper {
 
 	private List<Purchase> purchases;
 

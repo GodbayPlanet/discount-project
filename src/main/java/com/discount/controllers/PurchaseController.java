@@ -2,7 +2,6 @@ package com.discount.controllers;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +40,11 @@ public class PurchaseController {
 		} else {
 			return listOfPurchasesByUser.stream().collect(Collectors.toList()).subList(FROM_INDEX, limit);
 		}
+	}
+	
+	@RequestMapping("/api/purchases/by_product/{productId}")
+	public List<Purchase> getListOfPurchasesByProductId(@PathVariable("productId") int productId) {
+		return purchaseService.listOfPurchasesByProductId(productId);
 	}
 	
 }
