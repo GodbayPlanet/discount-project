@@ -21,13 +21,9 @@ import com.discount.wrappers.ProductByProductIdWrapper;
 public class ProductServiceImplTest {
 
 	private static final int PRODUCT_SIZE = 5;
-
 	private static final int PRODUCT_PRICE = 56;
-
 	private static final String PRODUCT_FACE = "||";
-
 	private static final int PRODUCT_ID = 1;
-
 	private static final int EXPECTED_LIST_SIZE = 1;
 
 	@Mock
