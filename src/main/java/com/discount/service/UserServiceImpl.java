@@ -45,4 +45,13 @@ public class UserServiceImpl implements UserService {
 		 return user;
 	}
 
+	/**
+	 * Method returns true if user with given userName exist in user list.
+	 */
+	@Override
+	public boolean isUserExist(String userName) {
+		List<User> users = listOfUsers();
+		return users.stream().anyMatch(user -> user.getUsername().equals(userName));
+	}
+
 }
