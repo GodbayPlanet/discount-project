@@ -45,7 +45,7 @@ public class PurchaseControllerTest {
 
 	/**
 	 * This test will fail if there is no purchases by user at specified index.
-	 * Data is generated with ./bin/generate-data.js file, and does not generate purchases fr all users.
+	 * Data is generated with ./bin/generate-data.js file, and does not generate purchases for all users.
 	 * So I made this test to practice unit testing.
 	 * @throws Exception
 	 */
