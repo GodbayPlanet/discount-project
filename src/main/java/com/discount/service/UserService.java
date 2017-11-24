@@ -10,4 +10,6 @@ public interface UserService {
 	public List<User> listOfUsers();
 	
 	public UserByUserNameWrapper getUserByName(String userName);
+	
+	public boolean isUserExist(String userName);
 }
