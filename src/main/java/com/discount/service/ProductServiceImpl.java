@@ -41,4 +41,12 @@ public class ProductServiceImpl implements ProductService {
 		return restTemplate.getForObject(productByProductId.replace("{productId}", String.valueOf(id)), ProductByProductIdWrapper.class);
 	}
 
+	/**
+	 * Returns true if product with given productId exist.
+	 */
+	@Override
+	public boolean isProductExist(int productId) {
+		return getAllProducts().stream().anyMatch(product -> product.getId() == productId);
+	}
+
 }

@@ -10,4 +10,6 @@ public interface ProductService {
 	public List<Product> getAllProducts();
 	
 	public ProductByProductIdWrapper getProductById(int id);
+	
+	public boolean isProductExist(int productId);
 }
