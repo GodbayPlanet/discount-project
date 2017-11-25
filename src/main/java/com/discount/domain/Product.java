@@ -48,4 +48,11 @@ public class Product {
 		this.size = size;
 	}
 
+	@Override
+	public String toString() {
+		return "id:" + id + ", "
+				+ (face != null ? "face:" + face + ", " : "") + "price:"
+				+ price + ", size:" + size;
+	}
+	
 }
