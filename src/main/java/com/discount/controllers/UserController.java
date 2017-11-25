@@ -3,11 +3,14 @@ package com.discount.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.discount.domain.User;
+import com.discount.service.ErrorResponse;
 import com.discount.service.UserService;
 import com.discount.wrappers.UserByUserNameWrapper;
 
@@ -36,7 +39,11 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/api/users/{userName}")
-	public UserByUserNameWrapper getUserByUserName(@PathVariable("userName") String userName) {
-		return userService.getUserByName(userName);
+	public ResponseEntity<?> getUserByUserName(@PathVariable("userName") String userName) {
+		if (!userService.isUserExist(userName)) {
+			return new ResponseEntity<ErrorResponse>(new ErrorResponse("User with userName " + userName + " not found"), 
+					HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<UserByUserNameWrapper>(userService.getUserByName(userName), HttpStatus.OK);
 	}
 }
