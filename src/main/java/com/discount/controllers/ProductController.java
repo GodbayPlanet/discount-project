@@ -3,11 +3,14 @@ package com.discount.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.discount.domain.Product;
+import com.discount.service.ErrorResponse;
 import com.discount.service.ProductService;
 import com.discount.wrappers.ProductByProductIdWrapper;
 
@@ -36,7 +39,11 @@ public class ProductController {
 	 * @return
 	 */
 	@RequestMapping("/api/products/{productId}") 
-	public ProductByProductIdWrapper getProduct(@PathVariable("productId") int id) {
-		return productService.getProductById(id);
+	public ResponseEntity<?> getProduct(@PathVariable("productId") int id) {
+		if (!productService.isProductExist(id)) {
+			return new ResponseEntity<ErrorResponse>(new ErrorResponse("Product with id " + id + " not found."), 
+					HttpStatus.NOT_FOUND); 
+		}
+		return new ResponseEntity<ProductByProductIdWrapper>(productService.getProductById(id), HttpStatus.OK);
 	}
 }
