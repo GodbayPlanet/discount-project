@@ -42,6 +42,11 @@ public class PurchaseController {
 		}
 	}
 	
+	/**
+	 * Method returns list of purchases by product id based on given product id.
+	 * @param productId
+	 * @return
+	 */
 	@RequestMapping("/api/purchases/by_product/{productId}")
 	public List<Purchase> getListOfPurchasesByProductId(@PathVariable("productId") int productId) {
 		return purchaseService.listOfPurchasesByProductId(productId);
