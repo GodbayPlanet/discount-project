@@ -3,6 +3,7 @@ package com.discount.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class PopularPurchaseController {
 	}
 
 	@RequestMapping("/api/recent_purchases/{userName:.+}")
+	@Cacheable(value = "popularPurchases", key = "#userName")
 	public ResponseEntity<?> getListOfPopularPurchases(@PathVariable("userName") String userName) {
 		List<PopularPurchase> popularPurchase = popularPurchaseService.listOfPopularPurchases(userName);
 		
