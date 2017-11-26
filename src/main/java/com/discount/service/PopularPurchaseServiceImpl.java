@@ -24,7 +24,10 @@ public class PopularPurchaseServiceImpl implements PopularPurchaseService {
 	}
 	
 	/**
-	 * This method is long, it can be much better....
+	 * Method returns list of Popular purchases based on given userName. First we getting list of purchases by user name.
+	 * Then with method getPurchasesByProductId() we get list of all purchases by productId and in the end with method
+	 * getPopularPurchases() method we iterate through each list of purchases by productId and for each product we add all users
+	 * who recently bought product.
 	 */
 	@Override
 	public List<PopularPurchase> listOfPopularPurchases(String userName) {
@@ -35,15 +38,26 @@ public class PopularPurchaseServiceImpl implements PopularPurchaseService {
 		
 		List<List<Purchase>> listOfAllPurchasesByProductId = new ArrayList<>();
 		
-		purchasesByUser.forEach(purchaseByUser -> {
-			List<Purchase> purchasesByProductId = purchaseService.listOfPurchasesByProductId(purchaseByUser.getProductId());
-			
-			listOfAllPurchasesByProductId.add(purchasesByProductId);
-		});
+		getPurchasesByProductId(purchasesByUser, listOfAllPurchasesByProductId);
 		
 		//Sorting list so the list of purchases by productId with most purchases is first.
 		listOfAllPurchasesByProductId.sort((purchasesByProductId1, purchasesByProductId2) -> 
 			(purchasesByProductId2.size() - purchasesByProductId1.size()));
+		
+		getPopularPurchases(userName, popularPurchases, listOfAllPurchasesByProductId);
+		
+		return popularPurchases;
+	}
+
+	/**
+	 * Method fills list of popular purchases with purchases. Also it does not fill list of users who
+	 * recently purchase product with duplicate users.
+	 * @param userName
+	 * @param popularPurchases
+	 * @param listOfAllPurchasesByProductId
+	 */
+	private void getPopularPurchases(String userName, List<PopularPurchase> popularPurchases, 
+			List<List<Purchase>> listOfAllPurchasesByProductId) {
 		
 		listOfAllPurchasesByProductId.forEach(listOfPurchases -> {
 			ProductByProductIdWrapper product = productService.getProductById(listOfPurchases.get(0).getProductId());
@@ -58,8 +72,19 @@ public class PopularPurchaseServiceImpl implements PopularPurchaseService {
 			popularPurchases.add(new PopularPurchase(product.getProduct(), 
 					usersWhoPurchaseProduct.stream().distinct().collect(Collectors.toList())));
 		});
-		
-		return popularPurchases;
+	}
+
+	/**
+	 * Method fills the list of all Purchases by ProductId with purchases.
+	 * @param purchasesByUser
+	 * @param listOfAllPurchasesByProductId
+	 */
+	private void getPurchasesByProductId(List<Purchase> purchasesByUser, List<List<Purchase>> listOfAllPurchasesByProductId) {
+		purchasesByUser.forEach(purchaseByUser -> {
+			List<Purchase> purchasesByProductId = purchaseService.listOfPurchasesByProductId(purchaseByUser.getProductId());
+			
+			listOfAllPurchasesByProductId.add(purchasesByProductId);
+		});
 	}
 
 }
